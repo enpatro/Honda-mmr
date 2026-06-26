@@ -1,0 +1,33 @@
+{
+  "machines": {
+    "CA04M01": {
+      "machineNo": "CA04M01",
+      "machineName": "Machining Center 1",
+      "make": "HOWA"
+    }
+  },
+  "parts": {
+    "1400226191": {
+      "itemCode": "1400226191",
+      "spec": "APC Cam lever",
+      "cost": 45000,
+      "vendor": "Vendor A",
+      "vendorEmail": "a@vendor.com",
+      "vendorPhone": "9999999999"
+    }
+  },
+  "history": {
+    "sample1": {
+      "machineNo": "CA04M01",
+      "itemCode": "1400226191",
+      "spec": "APC Cam lever",
+      "date": "",
+      "nextChange": "2026-12-10",
+      "status": "Scheduled",
+      "lifeValue": 12,
+      "lifeUnit": "Months",
+      "cost": 45000,
+      "remarks": "Sample scheduled"
+    }
+  }
+}
