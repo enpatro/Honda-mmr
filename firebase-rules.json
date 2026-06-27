@@ -3,28 +3,28 @@
     ".read": "auth != null",
     "userProfiles": {
       "$uid": {
-        ".write": "auth != null && (auth.uid == $uid || (root.child('userRoles').child(auth.uid).child('role').val() == 'admin' || auth.token.email == 'e.patro@honda.hmsi.in'))"
+        ".write": "auth != null && (auth.uid == $uid || root.child('userRoles').child(auth.uid).child('role').val() == 'admin')"
       }
     },
     "userRoles": {
       "$uid": {
         ".read": "auth != null",
-        ".write": "auth != null && (root.child('userRoles').child(auth.uid).child('role').val() == 'admin' || auth.token.email == 'e.patro@honda.hmsi.in')"
+        ".write": "auth != null && root.child('userRoles').child(auth.uid).child('role').val() == 'admin'"
       }
     },
     "machines": {
       "$id": {
-        ".write": "auth != null && (newData.exists() || (root.child('userRoles').child(auth.uid).child('role').val() == 'admin' || auth.token.email == 'e.patro@honda.hmsi.in'))"
+        ".write": "auth != null && (newData.exists() || root.child('userRoles').child(auth.uid).child('role').val() == 'admin')"
       }
     },
     "parts": {
       "$id": {
-        ".write": "auth != null && (newData.exists() || (root.child('userRoles').child(auth.uid).child('role').val() == 'admin' || auth.token.email == 'e.patro@honda.hmsi.in'))"
+        ".write": "auth != null && (newData.exists() || root.child('userRoles').child(auth.uid).child('role').val() == 'admin')"
       }
     },
     "history": {
       "$id": {
-        ".write": "auth != null && (newData.exists() || (root.child('userRoles').child(auth.uid).child('role').val() == 'admin' || auth.token.email == 'e.patro@honda.hmsi.in'))"
+        ".write": "auth != null && (newData.exists() || root.child('userRoles').child(auth.uid).child('role').val() == 'admin')"
       }
     },
     "imports": {

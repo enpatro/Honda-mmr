@@ -1,41 +1,43 @@
-# Honda MMR Complete Firebase Admin Reset Bundle
+# Honda MMR - GitHub Pages + Firebase Realtime Bundle
 
-## Upload to GitHub root
-Upload all files in this bundle to your repository root.
+## Files to upload to GitHub repository
+- `index.html` - main user app
+- `admin.html` - admin control page
+- `firebase-config.js` - Firebase web config (must edit)
+- `firebase-rules.json` - Realtime Database security rules
+- `machines_template.csv`, `parts_template.csv`
+- `mmr_backup_example.json`, `mmr_backup_blank.json`
 
-Files:
-- index.html
-- admin.html
-- firebase-config.js
-- firebase-rules.json
-- machines_template.csv
-- parts_template.csv
-- mmr_backup_blank.json
-- mmr_backup_example.json
+## Why this is needed
+GitHub Pages is static hosting only. LocalStorage data is per browser, so 10 users cannot see each other's data unless a shared backend database is used.
+This bundle uses Firebase Realtime Database so all connected users see the same live data.
 
-## First Admin
-Email: e.patro@honda.hmsi.in
+## Setup steps
+1. Create Firebase project.
+2. Enable Authentication > Email/Password.
+3. Create the 10 users in Firebase Authentication.
+4. Create Realtime Database.
+5. Paste `firebase-rules.json` into Firebase Realtime Database Rules.
+6. Edit `firebase-config.js` with your Firebase web app config.
+7. Upload all files to GitHub repo root.
+8. Open `https://enpatro.github.io/Honda_MMR/`.
 
-Password is NOT stored in GitHub files. Set password in Firebase Authentication.
+## First admin setup
+1. Login once from `index.html` using your admin email.
+2. Firebase will create `/userProfiles/UID`.
+3. Copy the UID.
+4. In Firebase Realtime Database, manually add:
 
-## Firebase Setup
-1. Firebase Console > Authentication > Sign-in method > Enable Email/Password.
-2. Authentication > Users > Add user > e.patro@honda.hmsi.in > set password.
-3. Project Settings > General > Your Apps > copy Web App config.
-4. Paste Web App config into firebase-config.js.
-5. Realtime Database > Rules > paste firebase-rules.json > Publish.
-6. Upload all files to GitHub and open admin.html.
+```json
+userRoles/{UID}/role = "admin"
+```
 
-## Forgot Password
-The admin.html and index.html both include Forgot Password button. It sends Firebase password reset email.
+5. Open `admin.html`. Now the admin can assign roles and delete records.
 
-## Roles
-- user: can view/upload/add/update.
-- admin: can delete and assign roles.
+## Role logic
+- User: can read, upload/merge JSON, add/update machine/part/history.
+- User: cannot delete records.
+- Admin: can delete any record and clear master/history.
 
 ## Important
-If login does not happen, check:
-- firebase-config.js has actual apiKey, not placeholder.
-- Email/Password sign-in method is enabled.
-- User is created in Firebase Authentication.
-- Realtime Database rules are published.
+If users must not update existing records either, rules can be tightened further. Current rules allow create/update but prevent deletion for non-admin users.
